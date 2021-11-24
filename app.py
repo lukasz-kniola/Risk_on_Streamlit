@@ -13,7 +13,7 @@ if 'file' not in st.session_state:
 if 'cols' not in st.session_state:
 	st.session_state['cols'] = ["SITEID", "SEX", "AGE", "RACE", "COUNTRY", "HEIGHT", "WEIGHT", "BMI"]
 
-if 'attmpt' not in st.session_state:
+if 'attempt' not in st.session_state:
 	st.session_state['attempt'] = "No"
 
 if 'multi' not in st.session_state:
