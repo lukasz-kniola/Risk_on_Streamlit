@@ -5,7 +5,7 @@ import numpy as np
 from streamlit.state.session_state import SessionState
 
 st.set_page_config(layout='wide')
-st.write(st.session_state)
+
 # Session state Initialization
 if 'file' not in st.session_state:
 	st.session_state['file'] = None
