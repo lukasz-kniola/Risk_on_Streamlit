@@ -5,7 +5,7 @@ import numpy as np
 from streamlit.state.session_state import SessionState
 
 st.set_page_config(layout='wide')
-
+st.write(st.session_state)
 # Session state Initialization
 if 'file' not in st.session_state:
 	st.session_state['file'] = None
@@ -13,8 +13,8 @@ if 'file' not in st.session_state:
 if 'cols' not in st.session_state:
 	st.session_state['cols'] = ["SITEID", "SEX", "AGE", "RACE", "COUNTRY", "HEIGHT", "WEIGHT", "BMI"]
 
-if 'attempt' not in st.session_state:
-	st.session_state['attempt'] = False
+if 'attmpt' not in st.session_state:
+	st.session_state['attempt'] = "No"
 
 if 'multi' not in st.session_state:
 	st.session_state['multi'] = 1
@@ -58,13 +58,6 @@ st.title('Calculate Risk of Re-identification')
 st.sidebar.subheader("Select:")
 menu = st.sidebar.radio("", options=["Input file", "Columns", "Risk of Attempt", "Calculate"])
 
-# st.write(" ")
-# if st.session_state.file is not None:
-#     st.sidebar.write("File: ", st.session_state.file.name)
-# else:
-#     st.sidebar.write("File:")
-# st.sidebar.write("Columns: ", ", ".join(st.session_state.cols))
-# st.sidebar.write("Attempt risk: ", str(st.session_state.multi))
 
 if menu == "Input file":
     st.header("Select input file")    
@@ -88,12 +81,12 @@ elif menu == "Risk of Attempt":
     st.header("Risk of attempt")
     attempt_risk = 1
 
-    col1, col2 = st.columns(2)
+    col1, col2 = st.columns(2) 
     
     col1.subheader("Consider risk of attempt?")
 
-    consider_attempt = col1.radio("", options=["No", "Yes"], index=int(st.session_state.attempt=='Yes'), key="attempt")
-
+    consider_attempt = col1.radio("", ("No", "Yes"), key="attempt")
+    
     if consider_attempt == "Yes":
         with col2:
             st.subheader("Context:")
